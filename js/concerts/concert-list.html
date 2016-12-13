@@ -1,0 +1,8 @@
+<ul>
+  <li ng-repeat="concert in concertListVm.concerts">
+    {{concert.band}}
+    <a ui-sref="concertsShow({id: concert._id})">More Info</a>
+    <a ui-sref="concertsEdit({id: concert._id})">Edit</a>
+    <a href="" ng-click="concertListVm.deleteConcert(concert)">Delete</a>
+  </li>
+</ul>
