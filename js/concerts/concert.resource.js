@@ -1,6 +1,6 @@
 (function() {
   'use strict';
-  angular.module('wsmd38')
+  angular.module('project4')
     .factory('ConcertResource', ConcertResource);
 
   ConcertResource.$inject = ['$resource'];

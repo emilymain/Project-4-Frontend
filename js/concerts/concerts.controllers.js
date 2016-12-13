@@ -1,6 +1,6 @@
 (function() {
   'use strict';
-  angular.module('wsmd38')
+  angular.module('project4')
     .controller('ConcertListController', ConcertListController)
     .controller('ConcertNewController', ConcertNewController)
     .controller('ConcertShowController', ConcertShowController)
