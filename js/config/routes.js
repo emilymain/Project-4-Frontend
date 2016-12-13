@@ -21,5 +21,11 @@
         // controller: 'getJamBase',
         // controllerAs: 'jb'
       })
+      .state('concertsNew',{
+        url:'/concerts/new',
+        templateUrl: 'js/concerts/concert-new.html',
+        controller: 'ConcertNewController',
+        controllerAs: 'concertNewVm'
+      })
   }
 })();
