@@ -13,12 +13,21 @@
     <input type="text" id="venue" ng-model="concertNewVm.newConcert.venue">
   </div>
   <div>
+    <label for="address">Venue Address:</label>
+    <input type="text" id="address" ng-model="concertNewVm.newConcert.address">
+  </div>
+
+  <div>
     <label for="date">Date:</label>
-    <input type="text" id="date" ng-model="concertNewVm.newConcert.date">
+    <input type="date" id="date" ng-model="concertNewVm.newConcert.date">
   </div>
   <div>
     <label for="time">Time:</label>
     <input type="text" id="time" ng-model="concertNewVm.newConcert.time">
+  </div>
+  <div>
+    <label for="cover">Cover:</label>
+    <input type="checkbox" id="cover" ng-model="concertNewVm.newConcert.cover">
   </div>
   <div>
     <input type="submit" value="Edit Concert">
