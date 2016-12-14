@@ -1,0 +1,10 @@
+
+<ng-map center="current-position">
+  <marker  ng-repeat="event in concertListVm.concerts" position="{{event.address}}" title="test"></marker>
+</ng-map>
+
+<ul>
+  <li ng-repeat="event in concertListVm.concerts">
+    {{event.band}} at {{event.venue}}
+  </li>
+</ul>

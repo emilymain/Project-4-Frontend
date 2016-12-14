@@ -18,8 +18,8 @@
       .state('concertsList', {
         url: '/concerts/list',
         templateUrl: 'js/concerts/concert-list.html',
-        // controller: 'getJamBase',
-        // controllerAs: 'jb'
+        controller: 'ConcertListController',
+        controllerAs: 'concertListVm'
       })
       .state('concertsNew',{
         url:'/concerts/new',
