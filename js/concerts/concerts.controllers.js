@@ -33,7 +33,7 @@
     };
 
     function infowindow() {
-      return $sce.trustAsHtml("<h2>" + vm.concert.band + " at " + vm.concert.venue + "</h2>" + "<p>" + vm.concert.address + "</p>" + "<p>" + vm.concert.time + "</p>" + "<p>" + $filter('date')(vm.concert.date, 'longDate') + "</p>")
+      return $sce.trustAsHtml("<h2>" + vm.concert.band + " at " + vm.concert.venue + "</h2>" + "<p>" + vm.concert.address + "</p>" + "<p>" + (vm.concert.time ? vm.concert.time : $filter('date')(vm.concert.date, 'shortTime')) + "</p>" + "<p>" + $filter('date')(vm.concert.date, 'longDate') + "</p>")
     }
 
     function deleteConcert(concertToDelete) {

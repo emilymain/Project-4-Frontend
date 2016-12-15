@@ -8,10 +8,10 @@
     </div>
   </info-window>
 </ng-map>
-<div>
-<ul>
-  <li ng-repeat="event in concertListVm.concerts">
-    {{event.band}} at {{event.venue}} on {{event.date | date : format : longDate}}
-  </li>
-</div>
+
+
+<ul id="list" layout="row" layout-padding="" layout-wrap="" layout-fill="" style="padding-bottom: 10px;" ng-cloak="" class="whiteframedemoBasicClassUsage" ng-repeat="event in concertListVm.concerts">
+  <md-whiteframe class="md-whiteframe-3dp" flex-sm="45" flex-gt-sm="35" flex-gt-md="25" layout="" layout-align="center center">
+    {{event.band}} at {{event.venue}} on {{event.date | date : 'mediumDate'}} at {{event.time ? event.time : event.date | date : 'shortTime'}}
+  </md-whiteframe>
 </ul>
