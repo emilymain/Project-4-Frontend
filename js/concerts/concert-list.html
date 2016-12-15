@@ -3,7 +3,7 @@
   <marker ng-repeat="concert in concertListVm.concerts" position="{{concert.address}}" id="{{concert._id}}" title="test" on-click="concertListVm.pinClicked(concert)"></marker>
   <info-window id="event-iw">
     <div ng-non-bindable="">
-      <div ng-bind="concertListVm.infowindow()">
+      <div ng-bind-html="concertListVm.infowindow()">
       </div>
     </div>
   </info-window>

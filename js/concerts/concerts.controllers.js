@@ -6,12 +6,12 @@
     .controller('ConcertShowController', ConcertShowController)
     .controller('ConcertEditController', ConcertEditController);
 
-  ConcertListController.$inject = ['ConcertResource', 'NgMap'];
+  ConcertListController.$inject = ['ConcertResource', 'NgMap', '$sce', '$filter'];
   ConcertNewController.$inject = ['ConcertResource', '$state'];
   ConcertShowController.$inject = ['ConcertResource', '$stateParams'];
   ConcertEditController.$inject = ['ConcertResource', '$state', '$stateParams'];
 
-  function ConcertListController(ConcertResource, NgMap) {
+  function ConcertListController(ConcertResource, NgMap, $sce, $filter) {
     var vm = this;
     vm.pinClicked = pinClicked;
     vm.concerts = [];
@@ -33,7 +33,7 @@
     };
 
     function infowindow() {
-      return vm.concert.band + " at " + vm.concert.venue
+      return $sce.trustAsHtml("<h2>" + vm.concert.band + " at " + vm.concert.venue + "</h2>" + "<p>" + vm.concert.address + "</p>" + "<p>" + vm.concert.time + "</p>" + "<p>" + $filter('date')(vm.concert.date, 'longDate') + "</p>")
     }
 
     function deleteConcert(concertToDelete) {
