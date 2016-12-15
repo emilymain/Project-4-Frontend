@@ -1,10 +1,17 @@
 
 <ng-map center="current-position">
-  <marker  ng-repeat="event in concertListVm.concerts" position="{{event.address}}" title="test"></marker>
+  <marker ng-repeat="concert in concertListVm.concerts" position="{{concert.address}}" id="{{concert._id}}" title="test" on-click="concertListVm.pinClicked(concert)"></marker>
+  <info-window id="event-iw">
+    <div ng-non-bindable="">
+      <div ng-bind="concertListVm.infowindow()">
+      </div>
+    </div>
+  </info-window>
 </ng-map>
-
+<div>
 <ul>
   <li ng-repeat="event in concertListVm.concerts">
-    {{event.band}} at {{event.venue}}
+    {{event.band}} at {{event.venue}} on {{event.date | date : format : longDate}}
   </li>
+</div>
 </ul>
