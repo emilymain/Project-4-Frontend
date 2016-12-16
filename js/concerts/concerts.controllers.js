@@ -6,18 +6,23 @@
     .controller('ConcertShowController', ConcertShowController)
     .controller('ConcertEditController', ConcertEditController);
 
-  ConcertListController.$inject = ['ConcertResource', 'NgMap', '$sce', '$filter'];
+  ConcertListController.$inject = ['ConcertResource', 'NgMap', '$sce', '$filter', '$scope'];
   ConcertNewController.$inject = ['ConcertResource', '$state'];
   ConcertShowController.$inject = ['ConcertResource', '$stateParams'];
   ConcertEditController.$inject = ['ConcertResource', '$state', '$stateParams'];
 
-  function ConcertListController(ConcertResource, NgMap, $sce, $filter) {
+  function ConcertListController(ConcertResource, NgMap, $sce, $filter, $scope) {
     var vm = this;
     vm.pinClicked = pinClicked;
     vm.concerts = [];
     vm.deleteConcert = deleteConcert;
-    vm.concert= {};
+    vm.concert = {};
     vm.infowindow = infowindow;
+    vm.currentPage = 1;
+    vm.perPage = 12;
+    vm.currentMarkers = currentMarkers;
+    $scope.pageChange = pageChange;
+
 
     NgMap.getMap().then(function(map) {
       vm.map = map;
@@ -31,6 +36,16 @@
       vm.concert = concert;
       vm.map.showInfoWindow('event-iw', concert._id);
     };
+
+    function pageChange(newPageNumber, oldPageNumber){
+      vm.currentPage = newPageNumber
+      console.log(currentMarkers())
+    }
+
+    function currentMarkers(){
+      return vm.concerts.slice((vm.currentPage -1) * vm.perPage, (vm.currentPage *vm.perPage))
+
+    }
 
     function infowindow() {
       return $sce.trustAsHtml("<h2>" + vm.concert.band + " at " + vm.concert.venue + "</h2>" + "<p>" + vm.concert.address + "</p>" + "<p>" + (vm.concert.time ? vm.concert.time : $filter('date')(vm.concert.date, 'shortTime')) + "</p>" + "<p>" + $filter('date')(vm.concert.date, 'longDate') + "</p>")
