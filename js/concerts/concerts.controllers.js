@@ -6,19 +6,35 @@
     .controller('ConcertShowController', ConcertShowController)
     .controller('ConcertEditController', ConcertEditController);
 
-  ConcertListController.$inject = ['ConcertResource'];
+  ConcertListController.$inject = ['ConcertResource', 'NgMap', '$sce', '$filter'];
   ConcertNewController.$inject = ['ConcertResource', '$state'];
   ConcertShowController.$inject = ['ConcertResource', '$stateParams'];
   ConcertEditController.$inject = ['ConcertResource', '$state', '$stateParams'];
 
-  function ConcertListController(ConcertResource) {
+  function ConcertListController(ConcertResource, NgMap, $sce, $filter) {
     var vm = this;
+    vm.pinClicked = pinClicked;
     vm.concerts = [];
     vm.deleteConcert = deleteConcert;
+    vm.concert= {};
+    vm.infowindow = infowindow;
+
+    NgMap.getMap().then(function(map) {
+      vm.map = map;
+    });
 
     ConcertResource.query().$promise.then(function(data) {
       vm.concerts = data;
     });
+
+    function pinClicked(e, concert) {
+      vm.concert = concert;
+      vm.map.showInfoWindow('event-iw', concert._id);
+    };
+
+    function infowindow() {
+      return $sce.trustAsHtml("<h2>" + vm.concert.band + " at " + vm.concert.venue + "</h2>" + "<p>" + vm.concert.address + "</p>" + "<p>" + (vm.concert.time ? vm.concert.time : $filter('date')(vm.concert.date, 'shortTime')) + "</p>" + "<p>" + $filter('date')(vm.concert.date, 'longDate') + "</p>")
+    }
 
     function deleteConcert(concertToDelete) {
       ConcertResource.delete({id:concertToDelete._id}).$promise.then(function(response) {
@@ -69,5 +85,9 @@
         $state.go('concertsList');
       });
     }
+  }
+
+  function pinClicked(event, marker) {
+    console.log(marker)
   }
 }());
