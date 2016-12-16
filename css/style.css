@@ -1,7 +1,21 @@
 body{
-  background: black;
+  background: white;
   color: pink;
 }
+
+#GigHub{
+  text-align: center;
+  font-size: 60px;
+}
+#info{
+  text-align: center;
+  font-size: 38px;
+
+}
+
+
+
+
 .whiteframedemoBasicClassUsage {
   /* For breakpoint `-xs` */
   /* For breakpoint `-sm` */
@@ -12,13 +26,13 @@ body{
     margin: 30px;
     height: 100px;
 }
-/*#list{
+#list{
     float: left;
     display: inline-block;
     width: 350px;
     height: 140px;
     margin: 10px;
-  }*/
+  }
   @media (max-width: 599px) {
     .whiteframedemoBasicClassUsage md-whiteframe {
       margin: 7px;
