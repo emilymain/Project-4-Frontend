@@ -15,6 +15,7 @@
     {{event.band}} at {{event.venue}} on {{event.date | date : 'mediumDate'}} at {{event.time ? event.time : event.date | date : 'shortTime'}}
   </div>
 </div>
-<div>
+
+<div id="pageChange">
 <dir-pagination-controls on-page-change="pageChange(newPageNumber, oldPageNumber)"></dir-pagination-controls>
 </div>

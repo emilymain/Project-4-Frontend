@@ -12,7 +12,9 @@ body{
   font-size: 38px;
 
 }
+#pageChange{
 
+}
 
 
 
@@ -30,7 +32,7 @@ body{
     float: left;
     display: inline-block;
     width: 350px;
-    height: 140px;
+    height: 1  0px;
     margin: 10px;
   }
   @media (max-width: 599px) {
