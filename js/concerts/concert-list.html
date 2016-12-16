@@ -10,8 +10,11 @@
 </ng-map>
 
 
-<ul id="list" layout="row" layout-padding="" layout-wrap="" layout-fill="" style="padding-bottom: 10px;" ng-cloak="" class="whiteframedemoBasicClassUsage" ng-repeat="event in concertListVm.concerts">
+<div id="list" layout="row" layout-padding="" layout-wrap="" layout-fill="" style="padding-bottom: 10px;" ng-cloak="" class="whiteframedemoBasicClassUsage" dir-paginate="event in concertListVm.concerts | itemsPerPage: 10">
   <div class="md-whiteframe-5dp">
     {{event.band}} at {{event.venue}} on {{event.date | date : 'mediumDate'}} at {{event.time ? event.time : event.date | date : 'shortTime'}}
   </div>
-</ul>
+</div>
+<div>
+<dir-pagination-controls></dir-pagination-controls>
+</div>
