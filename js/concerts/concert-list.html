@@ -1,6 +1,6 @@
 
 <ng-map center="current-position">
-  <marker ng-repeat="concert in concertListVm.concerts" position="{{concert.address}}" id="{{concert._id}}" title="test" on-click="concertListVm.pinClicked(concert)"></marker>
+  <marker ng-repeat="concert in concertListVm.currentMarkers()" position="{{concert.address}}" id="{{concert._id}}" title="test" on-click="concertListVm.pinClicked(concert)"></marker>
   <info-window id="event-iw">
     <div ng-non-bindable="">
       <div ng-bind-html="concertListVm.infowindow()">
@@ -10,11 +10,11 @@
 </ng-map>
 
 
-<div id="list" layout="row" layout-padding="" layout-wrap="" layout-fill="" style="padding-bottom: 10px;" ng-cloak="" class="whiteframedemoBasicClassUsage" dir-paginate="event in concertListVm.concerts | itemsPerPage: 10">
+<div id="list" layout="row" layout-padding="" layout-wrap="" layout-fill="" style="padding-bottom: 10px;" ng-cloak="" class="whiteframedemoBasicClassUsage" dir-paginate="event in concertListVm.concerts | itemsPerPage: concertListVm.perPage">
   <div class="md-whiteframe-5dp">
     {{event.band}} at {{event.venue}} on {{event.date | date : 'mediumDate'}} at {{event.time ? event.time : event.date | date : 'shortTime'}}
   </div>
 </div>
 <div>
-<dir-pagination-controls></dir-pagination-controls>
+<dir-pagination-controls on-page-change="pageChange(newPageNumber, oldPageNumber)"></dir-pagination-controls>
 </div>
